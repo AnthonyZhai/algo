@@ -6,12 +6,23 @@ struct Point{
 	double x, y;
 	Point(){}
 	Point(double x, double y): x(x), y(y){}	
+	Point operator +(const Point A){
+		Point res;
+		res.x = x + A.x;
+		res.y = y + A.y;
+		return res;
+	}
 };
 
 istream & operator>>(istream &in, Point &A){
 	in>>A.x>>A.y;
 	return in;
-};
+}
+
+ostream & operator<<(ostream &out, const Point &A){
+	out<<"("<<A.x<<","<<A.y<<")";
+	return out;
+}
 
 double dis(Point A, Point B){
 	return sqrt(pow(A.x - B.x, 2) + pow(A.y - B.y, 2));
@@ -32,4 +43,5 @@ int main(){
 	b = dis(B,C);
 	c = dis(C,A);
 	cout<<fixed<<setprecision(0)<<Heron(a,b,c)<<endl;
+
 }
